@@ -1,0 +1,65 @@
+{% extends 'padre.html'%}
+
+{%block main %}
+{% load crispy_forms_tags %}
+<br><br>
+ <header class="masthead">
+
+<div class="row">
+    <div class="col-12 col-md-10 offset-md-1">
+        <br><br>
+        <div class="card">
+
+            <div class="card-body">
+                     <h1>Listar</h1>
+                    <table>
+                        <tr>
+                            <td>Nombre</td>
+                            <td>Apellido</td>
+                            <td>FechaNacimiento</td>
+                            <td>Mail</td>
+                            <td>Opciones</td>
+                        </tr>
+                        {% for u in usuarios %}
+                            <tr>
+                                <td>{{u.nombreU}}</td>
+                                <td>{{u.apellido}}</td>
+                                <td>{{u.fechaNacimiento}}</td>
+                                <td>{{u.mail}}</td>
+                                <td><a href="{% url 'modificarusuario' u.id %}" class="btn btn-info btn-sn">modificar</a> </td>
+                                <td><a href="{% url 'eliminarusuario' u.id %}" class="btn btn-danger btn-sn">eliminar</a> </td>
+                            </tr>
+
+                        {% endfor %}
+                    </table>
+                {% if user.is_authenticated %}
+                <li>
+                    <a href="{% url 'logout'%}">cerrar session</a>
+                </li>
+                {% else %}
+                  <li>
+                    <a href="{% url 'login' %}">iniciar session</a>
+                </li>
+                {% endif%}
+                <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+                {% if messages%}
+                   {% for m in messages%}
+                <script>
+                    Swal.fire({
+                    "title":"felicitaciones",
+                    "text":"{{m}}",
+                    "icon":"success"
+                    })
+                </script>
+               <h1>{{m}}</h1>
+                {% endfor %}
+                {% endif %}
+            </div>
+        </div>
+
+
+    </div>
+
+</div>
+ </header>
+{% endblock main %}

@@ -1,0 +1,44 @@
+{% extends 'padre.html'%}
+{% load static %}
+{%block main %}
+{% load crispy_forms_tags %}
+
+      <header class="masthead">
+
+            <div class="container px-4 px-lg-5 d-flex h-100 align-items-center justify-content-center">
+                <div class="d-flex justify-content-center">
+                    <div class="text-center">
+<div class="row">
+
+    <div class="col-12 col-md-6 offset-md-3">
+        <br>
+<br>
+        <div class="card">
+            <div class="card-body">
+                     <h1>Registrar</h1>
+                 <form action="" method='post' enctype="multipart/form-data">
+                    {% csrf_token%}
+                    {{form | crispy}}
+                     <hr>
+                     <div class="d-flex justify-content-end">
+                     <input type="reset" value="Cancelar" class="btn btn-outline-danger">
+                    &nbsp;
+                    <input type="submit" class="btn btn-outline-primary">
+                     </div>
+                     </form>
+                        {{mensaje}}
+            </div>
+        </div>
+
+
+    </div>
+
+</div>
+</div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+
+{% endblock main %}
